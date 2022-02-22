@@ -1,0 +1,19 @@
+<!-- index.wxml -->
+<view class="home-container">
+  <view class="home-panel">
+    <view class="panel-shadow"></view>
+    <ec-radar wx:if="{{labelList.length}}" class="radar-box" labelList="{{labelList}}"></ec-radar>
+    <view class="test-rocket" bindtap="open">
+      <view class="test-text">测一测</view>
+      <image src="../../img/icons/rocket.svg"></image>
+    </view>
+    <view class="panel-center-box">
+      <view>78</view>
+      <view class="panel-center-box-text">绝世高手</view>
+    </view>
+  </view>
+  <view class="home-contentbox">
+    <article-comp wx:for="{{articleList}}" wx:for-item="aItem" wx:key="index" info="{{aItem}}"></article-comp>
+
+  </view>
+</view>

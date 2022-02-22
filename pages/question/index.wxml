@@ -1,0 +1,26 @@
+<!-- index.wxml -->
+<view class="home-container">
+  <view class="score-icon-box">
+    <image src="/img/icons/car.png" mode="aspectFit" class="question-score-icon" style="left: {{(currentIndex + 1) * 5 + '%'}};"></image>
+  </view>
+  <view class="question-score-progress">
+    <view class="question-score-current-progress" style="width: {{(currentIndex + 1) * 5 + '%'}}"></view>
+  </view>
+  <view class="question-score-text" bindtap="consoleLog">{{currentIndex + 1}} / {{questionList.length}}</view>
+  <view class="question-title">
+    <view class="question-title-head">{{currentIndex + 1}}.【{{questionType[questionList[currentIndex].type]}}】</view>{{questionList[currentIndex].title}}
+  </view>
+  <view wx:if="{{questionList[currentIndex].cover}}" class="question-cover-box">
+    <image src="{{questionList[currentIndex].cover}}" mode="aspectFill" class="question-cover"></image>
+  </view>
+  <checkbox-group bindchange="checkboxChange" class="question-answer-group">
+    <label wx:key="index" wx:for="{{questionList[currentIndex].options}}" class="question-answer-group-label {{item.checked ? 'checked' : ''}}">
+      <checkbox value="{{index}}" checked="{{item.checked}}" class="question-answer-group-checkbox" />{{selectKey[index]}}. {{item.value}}
+    </label>
+  </checkbox-group>
+  <view class="question-control-button-box">
+    <button disabled="{{currentIndex === 0}}" bindtap="changeProgressPrev">上一题</button>
+    <button class="question-next-button" disabled="{{currentIndex + 1 >= questionList.length}}" bindtap="changeProgressNext">下一题</button>
+    <button type="primary" disabled="{{currentIndex + 1 < questionList.length}}">提交</button>
+  </view>
+</view>

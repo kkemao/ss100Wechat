@@ -1,0 +1,26 @@
+<!-- index.wxml -->
+<view class="home-container">
+  <view class="article-title">{{info.title}}</view>
+  <block wx:if="{{info.cover}}">
+    <view wx:if="{{info.cover}}" class="article-cover-box">
+      <image src="{{info.cover}}" mode="aspectFill" class="article-cover"></image>
+    </view>
+  </block>
+  <block wx:if="{{info.sketch}}">
+    <view class="article-sketch">{{info.sketch}}</view>
+  </block>
+  <view class="article-other">
+    <view class="article-auth">{{info.auth || '转载'}}</view>
+    <view>{{info.labelname}} / {{info.create_time}}</view>
+  </view>
+  <view class="article-content">
+    <block wx:for="{{info.content}}" wx:key="index">
+      <block wx:if="{{item.type === 1}}">
+        <image src="{{item.content}}" mode="aspectFill" class="article-content-image"></image>
+      </block>
+      <block wx:else>
+        <view class="article-text">{{item.content}}</view>
+      </block>
+    </block>
+  </view>
+</view>

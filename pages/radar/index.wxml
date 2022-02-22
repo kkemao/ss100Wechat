@@ -1,0 +1,2 @@
+<!--index.wxml-->
+<ec-canvas class="ec-radar-dom" id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
