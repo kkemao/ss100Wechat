@@ -14,21 +14,19 @@ const app = getApp();
  */
 Page({
   onShareAppMessage: res => shareMessage,
+  currentStartTime: new Date().getTime(),
+  answerList: [],
   data: {
     questionList: [],
     currentIndex: 0,
-    currentStartTime: new Date().getTime(),
     currentQuestionInfo: {},
-    answerList: [],
+    // answerList: [],
     selectKey: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
     tfKey: ['T', 'F'],
     questionType: ['', '单选题', '多选题', '判断题'],
-
   },
   onLoad: function (options) {
-    this.setData({
-      currentStartTime: new Date().getTime()
-    });
+    this.currentStartTime = new Date().getTime();
     this.getQuestionListFun();
   },
   onReady() {},
@@ -87,16 +85,41 @@ Page({
       e.detail.value.map(item => {
         options[item].checked = 1;
       });
-    } else if(e.detail.value.length){
+    } else if (e.detail.value.length) {
       options[e.detail.value[e.detail.value.length - 1]].checked = 1;
     }
     questionList[currentIndex].options = options;
     this.setData({
       questionList
     });
+    this.changeAnswerList();
   },
   consoleLog: function () {
-    console.log('zkf', this.data);
+    console.log('zkf', this.answerList);
+  },
+  changeAnswerList: function () {
+    const {
+      currentIndex,
+      questionList,
+      selectKey,
+      tfKey
+    } = this.data;
+    // 保存当前题目的答案
+    const ans = [];
+    questionList[currentIndex].options.map((item, index) => {
+      if (item.checked) {
+        ans.push(questionList[currentIndex].type === 3 ? tfKey[index] : selectKey[index]);
+      }
+    });
+    const ct = new Date().getTime() - this.currentStartTime;
+    const currentAnswer = this.answerList[currentIndex] || {};
+
+    // 如果是返回上一题 需要重新处理答题记录把答题时间增加
+    currentAnswer.answer = ans.join('');
+    currentAnswer.questionId = questionList[currentIndex].id;
+    currentAnswer.costTime = (currentAnswer.costTime || 0) + ct;
+    currentAnswer.defaultAnswer = questionList[currentIndex].answer;
+    this.answerList[currentIndex] = currentAnswer;
   },
   changeProgressPrev: function () {
     this.changeProgress(-1);
@@ -108,36 +131,14 @@ Page({
     const {
       currentIndex,
       questionList,
-      answerList,
-      selectKey,
-      tfKey
     } = this.data;
-
-    // 保存当前题目的答案
-    const ans = [];
-    questionList[currentIndex].options.map((item, index) => {
-      if (item.checked) {
-        ans.push(questionList[currentIndex].type === 3 ? tfKey[index] : selectKey[index]);
-      }
-    });
-    const ct = new Date().getTime() - this.data.currentStartTime;
-    const currentAnswer = answerList[currentIndex] || {};
-
-    // 如果是返回上一题 需要重新处理答题记录把答题时间增加
-    currentAnswer.answer = ans.join('');
-    currentAnswer.questionId = questionList[currentIndex].id;
-    currentAnswer.costTime = (currentAnswer.costTime || 0) + ct;
-    currentAnswer.defaultAnswer = questionList[currentIndex].answer;
-    answerList[currentIndex] = currentAnswer;
-    this.setData({
-      answerList,
-    });
+    this.changeAnswerList();
     if (currentIndex + num > questionList.length) {
       return;
     }
     this.setData({
-      currentIndex: currentIndex + num,
-      currentStartTime: new Date().getTime()
+      currentIndex: currentIndex + num
     })
+    this.currentStartTime = new Date().getTime();
   }
 });

@@ -11,5 +11,6 @@
     "navigationBarTitleText": "ss100",
     "navigationBarTextStyle": "black"
   },
+  "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }
