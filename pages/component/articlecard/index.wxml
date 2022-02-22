@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="article-card" bindtap="navToDetail">
+    <image wx:if="{{info.cover}}" class="article-card-image" mode="aspectFill" src="{{info.cover}}"></image>
+    <view class="article-card-title">{{info.title}}</view>
+    <view class="article-card-sketch">{{info.sketch}}</view>
+    <view class="article-card-other">
+        <view class="article-card-auth">{{info.auth}}</view>
+        <view>{{info.labelname}} / {{info.create_time}}</view>
+    </view>
+</view>

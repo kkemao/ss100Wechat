@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "ec-radar": "../radar",
+        "article-comp": "../component/articlecard"
+    }
+}
