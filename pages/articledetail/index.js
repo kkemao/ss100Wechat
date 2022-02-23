@@ -21,6 +21,9 @@ Page({
     }
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '文章详情',
+    })
     if (options.info) {
       const detail = JSON.parse(options.info)
       const content = JSON.parse(detail.content).map(item => {

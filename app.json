@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/articledetail/index",
+    "pages/result/index",
     "pages/question/index"
   ],
   "window": {

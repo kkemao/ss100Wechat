@@ -26,6 +26,9 @@ Page({
     questionType: ['', '单选题', '多选题', '判断题'],
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '评测',
+    })
     this.currentStartTime = new Date().getTime();
     this.getQuestionListFun();
   },
@@ -140,5 +143,10 @@ Page({
       currentIndex: currentIndex + num
     })
     this.currentStartTime = new Date().getTime();
+  },
+  openresult: function(){
+    wx.navigateTo({
+      url: '/pages/result/index',
+    })
   }
 });

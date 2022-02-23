@@ -18,13 +18,7 @@ const formatNumber = n => {
 const setNavHeight = (setHeight) => {
   let navbarheight = 28;
   wx.getSystemInfo().then(res => {
-    if (res.platform == "devtools") {
-      navbarheight = res.statusBarHeight + (48 - 32) / 2
-    } else if (res.platform == "ios") {
-      navbarheight = res.statusBarHeight + (44 - 32) / 2;
-    } else if (res.platform == "android") {
-      navbarheight = res.statusBarHeight + (48 - 32) / 2
-    }
+    navbarheight = res.statusBarHeight;
     setHeight && setHeight(navbarheight);
   })
 }
