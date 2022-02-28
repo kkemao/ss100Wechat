@@ -3,7 +3,7 @@ import {
 } from '../../common/index';
 import util from '../../common/util';
 import {
-  queryArticleList
+  updateArticleCount
 } from '../../common/request';
 const app = getApp();
 
@@ -21,9 +21,16 @@ Page({
     }
   },
   onLoad: function (options) {
-    if (options.info) {
-      const detail = JSON.parse(options.info)
-      const content = JSON.parse(detail.content).map(item => {
+    wx.setNavigationBarTitle({
+      title: '文章详情',
+    })
+    if (app.globalData.articleDetailInfo) {
+      let detail = app.globalData.articleDetailInfo;
+      updateArticleCount({id: detail.id});
+      // infos = infos.replace(/\n/g,"\\n").replace(/\r/g,"\\r");
+      // console.log('zkf-----', infos);
+      // const detail = JSON.parse('zkf', infos)
+      const content = JSON.parse(detail.content.replace(/\n/g,"\\n").replace(/\r/g,"\\r")).map(item => {
         if (item.type === 1) {
           item.content = util.imageAddPrefix(item.content);
         }

@@ -1,11 +1,10 @@
 /**index.wxss**/
 .article-card {
-    /* min-height: 250rpx; */
     background: #f9f9f9;
-    margin-bottom: 15rpx;
     box-sizing: border-box;
-    padding: 15rpx;
+    padding: 30rpx 15rpx 15rpx;
     overflow: hidden;
+    border-bottom: 1rpx solid #eee;
 }
 
 .article-card-image {

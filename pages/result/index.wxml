@@ -1,0 +1,20 @@
+<!-- index.wxml -->
+<view class="home-container">
+  <view class="page-title" style="margin-top: {{navbarHeight}}px">{{title}}</view>
+  <view class="home-content">
+    <view class="home-content-top">
+      <view class="page-result-icon">
+        <image mode="aspectFit" src="/img/icons/resulticon.png"></image>
+      </view>
+      <view class="page-result-score-box">
+        <view class="result-title">综合得分</view>
+        <view class="result-score">{{score}}</view>
+        <view class="result-score-box-shadow" style="height: {{score+'%'}};"></view>
+      </view>
+    </view>
+    <view class="result-button-bar">
+      <button style="width: 240rpx; margin-right: 30rpx; font-weight: 300;" bindtap="gohome">返回首页</button>
+      <button type="primary" style="width: 240rpx;" bindtap="goArticle">测评解读</button>
+    </view>
+  </view>
+</view>

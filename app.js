@@ -36,6 +36,9 @@ App({
   globalData: {
     userInfo: null,
     labelList: [],
-    testValue: [430, 440, 500, 300, 490, 400]
+    radarLabelList: [],
+    testValue: [15, 20, 20, 15, 20],
+    phoneNumber: '',
+    userInfo: null
   }
 })

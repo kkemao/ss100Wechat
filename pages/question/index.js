@@ -2,7 +2,8 @@ import {
   shareMessage
 } from '../../common/index';
 import {
-  getQuestionList
+  getQuestionList,
+  saveAnswer
 } from '../../common/request';
 import util from '../../common/util';
 const app = getApp();
@@ -26,6 +27,9 @@ Page({
     questionType: ['', '单选题', '多选题', '判断题'],
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '测评',
+    })
     this.currentStartTime = new Date().getTime();
     this.getQuestionListFun();
   },
@@ -117,6 +121,7 @@ Page({
     // 如果是返回上一题 需要重新处理答题记录把答题时间增加
     currentAnswer.answer = ans.join('');
     currentAnswer.questionId = questionList[currentIndex].id;
+    currentAnswer.labelId = questionList[currentIndex].parent_id;
     currentAnswer.costTime = (currentAnswer.costTime || 0) + ct;
     currentAnswer.defaultAnswer = questionList[currentIndex].answer;
     this.answerList[currentIndex] = currentAnswer;
@@ -140,5 +145,55 @@ Page({
       currentIndex: currentIndex + num
     })
     this.currentStartTime = new Date().getTime();
+  },
+  openresult: async function () {
+    const {
+      phoneNumber
+    } = app.globalData;
+    if (!phoneNumber) {
+      wx.showModal({
+        content: '暂无权限，请先注册'
+      })
+      return;
+    }
+
+    try {
+      const res = await saveAnswer({
+        phoneNumber,
+        answerList: JSON.stringify(this.answerList)
+      });
+      const rightAnswer = this.answerList.filter(item => item.defaultAnswer === item.answer);
+      this.labelScore(rightAnswer);
+      wx.showToast({
+        title: '测评成功',
+        duration: 1500,
+        success: () => {
+          setTimeout(() => {
+            wx.navigateTo({
+              url: `/pages/result/index?score=${rightAnswer.length * 5}`,
+            })
+          }, 2000)
+        }
+      })
+    } catch (error) {
+      wx.showModal({
+        content: error.message
+      })
+    }
+  },
+  labelScore: function (rightAnswer) {
+    const labelList = app.globalData.labelList.filter(item => item.level === 1);
+    const al = {};
+    labelList.map(item => {
+      al[item.id] = {
+        name: item.name,
+        score: 0
+      }
+    });
+
+    rightAnswer.map(item => {
+      al[item.labelId].score = al[item.labelId].score + 1;
+    });
+    wx.setStorageSync('ssScoreObj', al)
   }
 });

@@ -19,8 +19,8 @@
     </label>
   </checkbox-group>
   <view class="question-control-button-box">
-    <button disabled="{{currentIndex === 0}}" bindtap="changeProgressPrev">上一题</button>
-    <button class="question-next-button" disabled="{{currentIndex + 1 >= questionList.length}}" bindtap="changeProgressNext">下一题</button>
-    <button type="primary" disabled="{{currentIndex + 1 < questionList.length}}">提交</button>
+    <button class="question-button-single" disabled="{{currentIndex === 0}}" bindtap="changeProgressPrev">上一题</button>
+    <button class="question-button-single question-next-button" disabled="{{currentIndex + 1 >= questionList.length}}" bindtap="changeProgressNext">下一题</button>
+    <button class="question-button-single" type="primary" disabled="{{currentIndex + 1 < questionList.length}}" bindtap="openresult">提交</button>
   </view>
 </view>

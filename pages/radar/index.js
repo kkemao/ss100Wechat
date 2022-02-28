@@ -4,7 +4,7 @@ import {
 } from '../../common/index';
 const app = getApp();
 
-function initChart(canvas, width, height, dpr) {
+function initChart(canvas, width, height, dpr, labelList, valueList) {
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height,
@@ -61,10 +61,7 @@ function initChart(canvas, width, height, dpr) {
         }
       },
       center: ['50%', '53%'],
-      indicator: app.globalData.labelList.filter(item => item.level === 1).map(item => ({
-        name: item.name,
-        max: 500
-      }))
+      indicator: labelList
     },
     symbol: "true",
     series: [{
@@ -91,7 +88,7 @@ function initChart(canvas, width, height, dpr) {
         }
       },
       data: [{
-        value: app.globalData.testValue,
+        value: valueList.map(value => value === 0 ? 3 : value >20 ? 20 : value),
         name: '预算'
       }]
     }]
@@ -104,14 +101,24 @@ function initChart(canvas, width, height, dpr) {
 Component({
   onShareAppMessage: res => shareMessage,
   properties: {
-    labelList: Object
+    labelList: Object,
+    radarLabelList: Object,
+    radarValues: Object
   },
   data: {
     ec: {
-      onInit: initChart
     }
   },
+  methods: {
+    echartInit(e) {
+      initChart(e.detail.canvas, e.detail.width, e.detail.height, e.detail.dpr, this.data.radarLabelList, this.data.radarValues)
+    },
+  },
   attached() {
-    
+  },
+  pageLifetimes: {
+    show: function() {
+      // this.triggerEvent('test', {}, {});
+    }
   }
 });

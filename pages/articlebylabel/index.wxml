@@ -1,0 +1,8 @@
+<!--pages/articlebylabel/index.wxml-->
+<view class="home-container">
+    <article-comp wx:for="{{articleList}}" wx:for-item="aItem" wx:key="index" info="{{aItem}}"></article-comp>
+    <view class="no-more">
+        <text wx:if="{{total > page * pageSize}}" class="has-more">查看更多</text>
+        <text wx:else>暂无更多</text>
+    </view>
+</view>
