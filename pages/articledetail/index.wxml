@@ -19,7 +19,7 @@
         <image src="{{item.content}}" mode="aspectFill" class="article-content-image"></image>
       </block>
       <block wx:else>
-        <view class="article-text">{{item.content}}</view>
+        <text class="article-text">{{item.content}}</text>
       </block>
     </block>
   </view>

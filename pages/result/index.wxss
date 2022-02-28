@@ -11,6 +11,16 @@
   padding: 15rpx 5%;
   box-sizing: border-box;
 }
+.page-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 32rpx;
+  padding-top: 10rpx;
+}
+
 
 .home-content {
   width: 100%;
@@ -18,17 +28,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
-.page-title {
+.home-content-top {
+  width: 100%;
+  height: calc(100% - 350rpx);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  font-size: 28rpx;
-  padding-top: rpx;
 }
 
 .page-result-icon {
@@ -59,7 +68,8 @@
   position: relative;
   border: 1px solid #eee;
   border-radius: 50%;
-  background: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.3);
+  box-shadow: 0px 0px 42px rgb(255 255 0 / 32%);
   width: 300rpx;
   height: 300rpx;
   overflow: hidden;

@@ -1,17 +1,19 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/articledetail/index",
-    "pages/result/index",
-    "pages/question/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "backgroundColor": "#eee",
-    "navigationBarBackgroundColor": "#eee",
-    "navigationBarTitleText": "ss100",
-    "navigationBarTextStyle": "black"
-  },
-  "lazyCodeLoading": "requiredComponents",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/articledetail/index",
+        "pages/result/index",
+        "pages/article/index",
+        "pages/question/index",
+        "pages/articlebylabel/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "backgroundColor": "#eee",
+        "navigationBarBackgroundColor": "#eee",
+        "navigationBarTitleText": "ss100",
+        "navigationBarTextStyle": "black"
+    },
+    "lazyCodeLoading": "requiredComponents",
+    "sitemapLocation": "sitemap.json"
 }

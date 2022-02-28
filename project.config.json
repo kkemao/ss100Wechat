@@ -27,7 +27,7 @@
             "disablePlugins": [],
             "outputPath": ""
         },
-        "useIsolateContext": false,
+        "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
@@ -40,7 +40,7 @@
     },
     "compileType": "miniprogram",
     "libVersion": "2.10.2",
-    "appid": "wxe1fe544118850d6d",
+    "appid": "wx3e9616624672b017",
     "projectname": "ss100Wechat",
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
