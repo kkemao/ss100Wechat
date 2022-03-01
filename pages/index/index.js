@@ -96,14 +96,16 @@ Page({
       this.setRadarList(res.data);
     }
   },
-  setRadarList: function(list) {
+  setRadarList: function (list) {
     // if (!app.globalData.radarLabelList.length) {
-      const radarLabelList = list.filter(item => item.level === 1).map(item => ({
-        name: item.name,
-        max: 20
-      }));
-      app.globalData.radarLabelList = radarLabelList;
-      this.setData({radarLabelList});
+    const radarLabelList = list.filter(item => item.level === 1).map(item => ({
+      name: item.name,
+      max: 20
+    }));
+    app.globalData.radarLabelList = radarLabelList;
+    this.setData({
+      radarLabelList
+    });
     // }
   },
   getArticleListFun: async function () {
@@ -167,6 +169,7 @@ Page({
   },
   getPhoneNumber: async function (event) {
     console.log('zkf-[鉴权]-获取到手机加密信息', event.detail);
+    if (event.detail.errMsg !== 'getPhoneNumber:ok') return;
     wx.showLoading({
       title: '授权中，稍等',
     })
@@ -212,16 +215,21 @@ Page({
         });
         app.globalData.phoneNumber = res.data.phoneNumber;
         this.open();
+      } else {
+        wx.showToast({
+          title: `${res.msg||'授权异常'}`,
+          icon: 'none'
+        })
       }
     } catch (err) {
       wx.hideLoading();
       wx.showToast({
-        title: `${err.toString()?err.toString():'获取手机号信息失败，请联系管理员!'}`,
+        title: `网络异常`,
         icon: 'none'
       })
     }
   },
-  toarticle: function() {
+  toarticle: function () {
     wx.navigateTo({
       url: '/pages/article/index',
     })
