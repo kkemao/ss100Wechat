@@ -11,7 +11,6 @@ function initChart(canvas, width, height, dpr, labelList, valueList) {
     devicePixelRatio: dpr // new
   });
   canvas.setChart(chart);
-
   var option = {
     backgroundColor: "rgba(128,128,128,0.1)",
     xAxis: {
@@ -21,6 +20,7 @@ function initChart(canvas, width, height, dpr, labelList, valueList) {
       show: false
     },
     radar: {
+      triggerEvent: true,
       // shape: 'circle',
       splitNumber: 1,
       splitArea: {
@@ -35,13 +35,14 @@ function initChart(canvas, width, height, dpr, labelList, valueList) {
       },
       axisName: {
         color: '#fff',
+        clickable: true,
         formatter: function (value, indicator) {
           return '{a|' + value + '}';
         },
         rich: {
           a: {
             color: '#ccc',
-            fontSize: '12rpx'
+            fontSize: '11px'
           },
           b: {
             color: 'yellow'
@@ -95,6 +96,9 @@ function initChart(canvas, width, height, dpr, labelList, valueList) {
   };
 
   chart.setOption(option);
+  chart.on('touchStart', 'radar.axisName', (params)=>{
+    console.log('zkf-params', params);
+  })
   return chart;
 }
 
@@ -111,7 +115,10 @@ Component({
   },
   methods: {
     echartInit(e) {
-      initChart(e.detail.canvas, e.detail.width, e.detail.height, e.detail.dpr, this.data.radarLabelList, this.data.radarValues)
+      const chart = initChart(e.detail.canvas, e.detail.width, e.detail.height, e.detail.dpr, this.data.radarLabelList, this.data.radarValues)
+      chart.getZr().on('click', (params)=>{
+        console.log('zkf-params', params);
+      })
     },
   },
   attached() {

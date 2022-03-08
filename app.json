@@ -11,7 +11,7 @@
         "backgroundTextStyle": "light",
         "backgroundColor": "#eee",
         "navigationBarBackgroundColor": "#eee",
-        "navigationBarTitleText": "ss100",
+        "navigationBarTitleText": "数商100",
         "navigationBarTextStyle": "black"
     },
     "lazyCodeLoading": "requiredComponents",

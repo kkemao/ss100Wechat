@@ -25,15 +25,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        const {
-            currentLabelIndex
-        } = this.data;
-        const ll = app.globalData.labelList;
+        const currentLabelIndex = Number(options.currentIndex || this.data.currentLabelIndex);
+        this.setData({
+            currentLabelIndex,
+        });
+        let ll = app.globalData.labelList;
+        ll = ll.filter(item => item.level === 1);
         // 适配自定义标题栏高度
         const res = wx.getSystemInfoSync();
         this.setData({
             navbarHeight: res.statusBarHeight,
-            labelList: ll.filter(item => item.level === 1)
+            labelList: ll
         });
         this.getArticle(ll[currentLabelIndex].id);
     },

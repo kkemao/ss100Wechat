@@ -233,5 +233,11 @@ Page({
     wx.navigateTo({
       url: '/pages/article/index',
     })
+  },
+  labelToArticle: function(e){
+    if(!this.data.hasTest)return;
+    wx.navigateTo({
+      url: `/pages/article/index?currentIndex=${e.currentTarget.dataset.index}`,
+    })
   }
 });
