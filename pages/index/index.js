@@ -189,7 +189,8 @@ Page({
         appid,
         sessionKey,
         avatar: userInfo.avatarUrl,
-        gender: userInfo.gender,
+        // 小程序用户信息接口调整：小程序与小游戏获取用户信息相关接口：不再返回用户性别及地区信息；
+        gender: userInfo.gender||0,
         accountName: userInfo.nickName
       };
       // 参数缺失

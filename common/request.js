@@ -5,7 +5,7 @@ import util from './util';
 const errFun = info => {
     wx.showModal({
         title: '温馨提示',
-        content: '系统繁忙，请稍后再试',
+        content: JSON.stringify(info)||'系统繁忙，请稍后再试',
         success: res => {}
     })
 }

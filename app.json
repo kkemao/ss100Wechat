@@ -15,5 +15,10 @@
         "navigationBarTextStyle": "black"
     },
     "lazyCodeLoading": "requiredComponents",
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "usingComponents": {
+        "radar-comp": "component/radar/index",
+        "article-card": "component/articlecard/index",
+        "ec-canvas": "ec-canvas/ec-canvas"
+    }
 }
