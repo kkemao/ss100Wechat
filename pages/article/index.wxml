@@ -22,7 +22,7 @@
             <view class="label-description">{{labelList[currentLabelIndex].description}}</view>
             <view class="content-list-item" wx:for="{{labelArticleList}}" wx:key="index">
                 <text class="second-label-name">{{item.labelName}}</text>
-                <article-comp wx:for="{{item.children}}" wx:for-item="aItem" wx:key="index" info="{{aItem}}"></article-comp>
+                <article-card wx:for="{{item.children}}" wx:for-item="aItem" wx:key="index" info="{{aItem}}"></article-card>
                 <view class="read-more-box" data-labelid="{{item.id}}" data-labelname="{{item.labelName}}" bindtap="seemore">
                     <text>查看更多</text>
                     <view class="read-more-icon"></view>

@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "article-comp": "../component/articlecard"
-  },
+  "usingComponents": {},
   "navigationStyle":"custom"
 }
