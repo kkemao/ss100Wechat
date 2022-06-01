@@ -84,6 +84,7 @@ Page({
     }
     await this.getArticleListFun();
     await this.queryLabelListFun();
+    await this.getSession();
   },
   onReady() {},
   async queryLabelListFun() {
@@ -179,7 +180,8 @@ Page({
         encryptedData
       } = event.detail;
       const appid = systemConfig.appid;
-      const sessionKey = await this.getSession();
+    //   const sessionKey = await this.getSession();
+      const sessionKey = wx.getStorageSync("ssSessionKey");
       const {
         userInfo
       } = this.data;
