@@ -1,5 +1,5 @@
 export const shareMessage = {
-    title: 'ECharts 可以在微信小程序中使用啦！',
+    title: '数商100，您的专业测评服务。',
     path: '/pages/index/index',
     success: function () {},
     fail: function () {}

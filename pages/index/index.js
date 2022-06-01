@@ -84,6 +84,7 @@ Page({
     }
     await this.getArticleListFun();
     await this.queryLabelListFun();
+    await this.getSession();
   },
   onReady() {},
   async queryLabelListFun() {
@@ -96,14 +97,16 @@ Page({
       this.setRadarList(res.data);
     }
   },
-  setRadarList: function(list) {
+  setRadarList: function (list) {
     // if (!app.globalData.radarLabelList.length) {
-      const radarLabelList = list.filter(item => item.level === 1).map(item => ({
-        name: item.name,
-        max: 20
-      }));
-      app.globalData.radarLabelList = radarLabelList;
-      this.setData({radarLabelList});
+    const radarLabelList = list.filter(item => item.level === 1).map(item => ({
+      name: item.name,
+      max: 20
+    }));
+    app.globalData.radarLabelList = radarLabelList;
+    this.setData({
+      radarLabelList
+    });
     // }
   },
   getArticleListFun: async function () {
@@ -167,6 +170,7 @@ Page({
   },
   getPhoneNumber: async function (event) {
     console.log('zkf-[鉴权]-获取到手机加密信息', event.detail);
+    if (event.detail.errMsg !== 'getPhoneNumber:ok') return;
     wx.showLoading({
       title: '授权中，稍等',
     })
@@ -176,7 +180,8 @@ Page({
         encryptedData
       } = event.detail;
       const appid = systemConfig.appid;
-      const sessionKey = await this.getSession();
+    //   const sessionKey = await this.getSession();
+      const sessionKey = wx.getStorageSync("ssSessionKey");
       const {
         userInfo
       } = this.data;
@@ -186,7 +191,8 @@ Page({
         appid,
         sessionKey,
         avatar: userInfo.avatarUrl,
-        gender: userInfo.gender,
+        // 小程序用户信息接口调整：小程序与小游戏获取用户信息相关接口：不再返回用户性别及地区信息；
+        gender: userInfo.gender||0,
         accountName: userInfo.nickName
       };
       // 参数缺失
@@ -212,18 +218,29 @@ Page({
         });
         app.globalData.phoneNumber = res.data.phoneNumber;
         this.open();
+      } else {
+        wx.showToast({
+          title: `${res.msg||'授权异常'}`,
+          icon: 'none'
+        })
       }
     } catch (err) {
       wx.hideLoading();
       wx.showToast({
-        title: `${err.toString()?err.toString():'获取手机号信息失败，请联系管理员!'}`,
+        title: `网络异常`,
         icon: 'none'
       })
     }
   },
-  toarticle: function() {
+  toarticle: function () {
     wx.navigateTo({
       url: '/pages/article/index',
+    })
+  },
+  labelToArticle: function(e){
+    if(!this.data.hasTest)return;
+    wx.navigateTo({
+      url: `/pages/article/index?currentIndex=${e.currentTarget.dataset.index}`,
     })
   }
 });

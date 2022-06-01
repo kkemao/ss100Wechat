@@ -74,12 +74,12 @@
 .test-rocket .test-text {
   margin-bottom: 5rpx;
   font-size: 16rpx;
-  border: 1px solid rgb(49, 62, 230);
+  /* border: 1px solid rgb(49, 62, 230); */
   padding: 3rpx 10rpx;
   text-align: center;
   box-sizing: border-box;
   border-radius: 13rpx;
-  background: rgb(49, 62, 230);
+  /* background: rgb(49, 62, 230); */
 }
 
 .test-rocket image {
@@ -88,7 +88,8 @@
   object-fit: contain;
   filter: invert(1);
 }
-.avatar-box{
+
+.avatar-box {
   position: absolute;
   top: 30rpx;
   left: 30rpx;
@@ -98,9 +99,41 @@
   border-radius: 50%;
   overflow: hidden;
 }
-.avatar-box-image{
+
+.avatar-box-image {
   width: 100%;
   height: 100%;
+}
+
+.label-hotarea-0,
+.label-hotarea-1,
+.label-hotarea-2,
+.label-hotarea-3,
+.label-hotarea-4 {
+  font-size: 36rpx;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  height: 60rpx;
+  opacity: 0;
+}
+.label-hotarea-0{
+  top: 2%;
+}
+.label-hotarea-1{
+  top: 34%;
+  left: 7vw;
+}
+.label-hotarea-2{
+  bottom: 7%;
+  left: 20%;
+}
+.label-hotarea-3{
+  bottom: 7%;
+  right: 20%;
+}
+.label-hotarea-4{
+  top: 34%;
+  right: 7vw;
 }
 
 @keyframes shamer {

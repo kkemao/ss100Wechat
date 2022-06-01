@@ -11,9 +11,14 @@
         "backgroundTextStyle": "light",
         "backgroundColor": "#eee",
         "navigationBarBackgroundColor": "#eee",
-        "navigationBarTitleText": "ss100",
+        "navigationBarTitleText": "数商100",
         "navigationBarTextStyle": "black"
     },
     "lazyCodeLoading": "requiredComponents",
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "usingComponents": {
+        "radar-comp": "component/radar/index",
+        "article-card": "component/articlecard/index",
+        "ec-canvas": "ec-canvas/ec-canvas"
+    }
 }

@@ -2,22 +2,23 @@
 <view class="home-container">
   <view class="home-panel">
     <view class="panel-shadow"></view>
-    <ec-radar class="radar-box" wx:if="{{radarLabelList.length}}" labelList="{{labelList}}" radarValues="{{radarValues}}" radarLabelList="{{radarLabelList}}"></ec-radar>
+    <radar-comp class="radar-box" wx:if="{{radarLabelList.length}}" labelList="{{labelList}}" radarValues="{{radarValues}}" radarLabelList="{{radarLabelList}}"></radar-comp>
     <!-- <ec-radar wx:if="{{labelList.length}}" class="radar-box" labelList="{{labelList}}"></ec-radar> -->
     <view class="test-rocket">
-      <view class="test-text">测一测</view>
+      <view class="test-text">涨涨分</view>
       <image src="../../img/icons/rocket.svg" bindtap="open"></image>
       <button style="display: {{phoneNumber ?  'none': ''}};" class="getphone-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
     </view>
-    <view class="avatar-box" style="display: {{hasTest ? '' : 'none'}};" bindtap="toarticle">
+    <!-- <view class="avatar-box" style="display: {{hasTest ? '' : 'none'}};" bindtap="toarticle">
       <image class="avatar-box-image" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
-    </view>
+    </view> -->
+    <view wx:for="{{radarLabelList}}" wx:key="index" data-index="{{index}}" class="label-hotarea-{{index}}" bindtap="labelToArticle">{{item.name}}</view>
     <view class="panel-center-box">
       <view>{{totalScore}}</view>
-      <view class="panel-center-box-text">绝世高手</view>
+      <view class="panel-center-box-text">{{totalScore<=59? '牛刀小试' :totalScore<=69?'旗开得胜':totalScore<=79?'成绩斐然':totalScore<=89?'成绩优异':totalScore<=99?'出类拔萃':'名列榜首'}}</view>
+      </view>
+    </view>
+    <view class="home-contentbox">
+      <article-card wx:for="{{articleList}}" wx:for-item="aItem" wx:key="index" info="{{aItem}}"></article-card>
     </view>
   </view>
-  <view class="home-contentbox">
-    <article-comp wx:for="{{articleList}}" wx:for-item="aItem" wx:key="index" info="{{aItem}}"></article-comp>
-  </view>
-</view>

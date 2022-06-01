@@ -156,7 +156,13 @@ Page({
       })
       return;
     }
-
+    if(!this.answerList.length){
+      wx.showToast({
+        title: '暂无题目，请联系管理员添加',
+        icon: 'none'
+      })
+      return false;
+    }
     try {
       const res = await saveAnswer({
         phoneNumber,

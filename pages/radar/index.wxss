@@ -1,5 +1,0 @@
-/**index.wxss**/
-.ec-radar-dom {
-  width: 100%;
-  height: 100%;
-}
